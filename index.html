@@ -17,8 +17,18 @@
   }
   * { box-sizing: border-box; margin: 0; }
   html, body { height: 100%; }
+  html { background: var(--bg); }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: -24px;
+    z-index: -1;
+    background:
+      linear-gradient(rgba(22, 33, 59, .45), rgba(22, 33, 59, .45)),
+      url("bg.jpg") center / cover no-repeat;
+    filter: blur(6px);
+  }
   body {
-    background: var(--bg);
     color: var(--text);
     font-family: "Outfit", system-ui, -apple-system, "Segoe UI", sans-serif;
     display: grid;
@@ -62,7 +72,6 @@
   <h1>duonthn / Dekisugi</h1>
   <p>I'm Thien and live in HCMC</p>
 
-  <!-- Sửa link bên dưới thành link thật của bạn -->
   <nav aria-label="Liên kết">
     <a href="https://github.com/duonthn" aria-label="GitHub"><img src="https://cdn.simpleicons.org/github/white" alt=""></a>
     <a href="https://www.youtube.com/@duonthn" aria-label="YouTube"><img src="https://cdn.simpleicons.org/youtube/white" alt=""></a>
@@ -75,19 +84,3 @@
 </main>
 </body>
 </html>
-}
-
-  html { background: #16213b; }
-
-  body::before {
-    content: "";
-    position: fixed;
-    inset: -24px;
-    z-index: -1;
-    background:
-      linear-gradient(rgba(22, 33, 59, .45), rgba(22, 33, 59, .45)),
-      url("bg.jpg") center / cover no-repeat;
-    filter: blur(6px);
-  }
-</style>
-}
