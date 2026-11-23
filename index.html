@@ -76,15 +76,18 @@
 </body>
 </html>
 }
-html { background: #16213b; }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: -24px;
-  z-index: -1;
-  background:
-    linear-gradient(rgba(22, 33, 59, .45), rgba(22, 33, 59, .45)),
-    url("bg.jpg") center / cover no-repeat;
-  filter: blur(6px);
+  html { background: #16213b; }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: -24px;
+    z-index: -1;
+    background:
+      linear-gradient(rgba(22, 33, 59, .45), rgba(22, 33, 59, .45)),
+      url("bg.jpg") center / cover no-repeat;
+    filter: blur(6px);
+  }
+</style>
 }
