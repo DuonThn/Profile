@@ -82,6 +82,19 @@
   nav img { width: 20px; height: 20px; display: block; }
   @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
   @media (prefers-reduced-motion: reduce) { .avatar { animation: none; } nav a { transition: none; } }
+  #devices { max-width: 560px; margin: 0 auto; padding: 0 24px 120px; }
+  #devices h2 { font-size: 2rem; font-weight: 600; letter-spacing: -.01em; }
+  #devices .sub { margin-top: 8px; margin-bottom: 24px; }
+  #devices ul { list-style: none; padding: 0; }
+  #devices li { border-top: 1px solid var(--line); line-height: 1.6; }
+  #devices summary { display: flex; justify-content: space-between; padding: 16px 0; cursor: pointer; list-style: none; }
+  #devices summary::-webkit-details-marker { display: none; }
+  #devices summary::after { content: "+"; color: var(--muted); margin-left: 12px; }
+  #devices details[open] summary::after { content: "\2212"; }
+  #devices summary span { margin-left: auto; }
+  #devices .names { overflow: hidden; padding: 0 0 16px; color: var(--muted); line-height: 1.8; }
+  #devices li:last-child { border-bottom: 1px solid var(--line); }
+  #devices li span { color: var(--muted); }
 </style>
 </head>
 <body>
@@ -113,5 +126,82 @@
     <li>I am a 18-year-old student in Ho Chi Minh City. I have a keen interest in computer hardware and enjoy tinkering with operating systems. Whenever I'm bored, I like to read manga or watch anime to pass the time. Sometimes, I also play on my computer! My favorite games include Osu!, Honkai Impact 3rd, and various indie games. Honestly, my life is pretty boring, so there's not much else to share.</li>
   </ul>
 </section>
+
+<section id="devices">
+  <h2>Devices</h2>
+  <p class="sub">What I use and tinker with.</p>
+  <ul>
+    <li><details><summary>PC <span>3</span></summary><div class="names">
+        <div>PC Main
+        Intel® Core™ i5 4460 
+        32GB DDR3 1600MHz
+        AMD Radeon HD 7870
+        256GB + 256Gb SSD
+        2TB + 320gb + 500gb + 1TB HDD
+        ASUS B85M-G
+        Corsair RM650 650w</div>
+        <div>PC 2
+        Intel® Core™ 2 Duo E8400
+        2GB DDR2 800MHz
+        Intel® GMA 3100
+        160gb HDD
+        Intel® Mainboard MS-7594
+        VSP Delta P350 350w</div>
+        <div>PC 3
+        Intel® Core™ 2 Quad Q9550
+        4GB DDR2 800MHz
+        120gb SSD
+        500gb HDD
+        ASUS P5KPL-CM
+        Corsair VS350 350w
+        </div>
+      </div></details></li>
+    <li><details><summary>Laptop <span>2</span></summary><div class="names">
+        <div>[Tên Laptop 1]</div>
+        <div>[Tên Laptop 2]</div>
+      </div></details></li>
+    <li><details><summary>Smart box <span>1</span></summary><div class="names">
+        <div>[Tên Smart box 1]</div>
+      </div></details></li>
+    <li><details><summary>Phone <span>3</span></summary><div class="names">
+        <div>[Tên Phone 1]</div>
+        <div>[Tên Phone 2]</div>
+        <div>[Tên Phone 3]</div>
+      </div></details></li>
+    <li><details><summary>Smartwatch <span>2</span></summary><div class="names">
+        <div>[Tên Smartwatch 1]</div>
+        <div>[Tên Smartwatch 2]</div>
+      </div></details></li>
+    <li><details><summary>Tablet <span>1</span></summary><div class="names">
+        <div>[Tên Tablet 1]</div>
+      </div></details></li>
+    <li><details><summary>TWS <span>2</span></summary><div class="names">
+        <div>[Tên TWS 1]</div>
+        <div>[Tên TWS 2]</div>
+      </div></details></li>
+  </ul>
+</section>
+
+<script>
+  // Mở / đóng danh sách thiết bị mượt
+  document.querySelectorAll('#devices details').forEach(function (d) {
+    var summary = d.querySelector('summary');
+    var box = d.querySelector('.names');
+    var busy = false;
+    summary.addEventListener('click', function (e) {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      e.preventDefault();
+      if (busy) return;
+      busy = true;
+      var opening = !d.open;
+      if (opening) d.open = true;
+      var h = box.offsetHeight + 'px';
+      var open = { height: h, paddingBottom: '16px', opacity: 1 };
+      var shut = { height: '0px', paddingBottom: '0px', opacity: 0 };
+      var a = box.animate(opening ? [shut, open] : [open, shut], { duration: 300, easing: 'cubic-bezier(.4,0,.2,1)' });
+      a.onfinish = function () { if (!opening) d.open = false; busy = false; };
+    });
+  });
+</script>
 </body>
 </html>
